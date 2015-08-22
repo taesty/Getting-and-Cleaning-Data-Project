@@ -4,7 +4,7 @@ Coursera - Getting and Cleaning Data course project
 The run_analysis.R script returns the means of 73 variables grouped by subject id and activity. 
 The data behind the tidy data comes from the UCI HAR Dataset. More information about the dataset can be found on the course project page and the .txt files in the UCI HAR Dataset folder. 
 
-To complete the task, I used the dplyr package.
+Steps taken to complete the project:
 
 I read in all the necessary .txt files using the read.table() function. 
 
@@ -18,6 +18,8 @@ Next step was combining the different data gathered from the .txt files into one
 
 Next, I wanted to replace the activity integer variables with a more description action labels which are found in the activity_labels.txt file in the data folder. I did this by first creating a variable "activities" containing the matching pairs ("1" = "walking", etc) and replaced the integer values with its corresponding action label in the activity column using the factor() function with levels = activities. I then had the dataset necessary to perform the mean summary statistics. 
 
-To perform the summary, I used functions from the dplyr package. I first grouped the data by subject_id then activity and using the summarise_each() function, took the means of all the variable columns. This returned a data consisting of 180 rows (30 subject * 6 actions) and 75 columns (1 for subject id, 1 for action, 73 for mean()/std() variables). 
+To perform the summary, I used functions and suntax from the dplyr package. I first grouped the data by subject_id and activity in that order then returned the means of all the variable columns using the summarise_each() function. Summarise_each() performs the given function across all the variables excluding the grouped variables. This returned a data consisting of 180 rows (30 subject * 6 actions) and 75 columns (1 for subject id, 1 for action, 73 for mean()/std() variables). 
 
 Finally, I used write.table() to save the result as a .txt file as directed in the project. 
+
+I believe the resulting data is tidy because it has one variable per column and one observation per row. I thought about creating a column to combine all the measured variables together but it result in a very long and narrow form which I believe is more difficult to read and analyze. 
