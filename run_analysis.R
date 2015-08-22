@@ -6,10 +6,12 @@ library(stringr)
 features <- read.table("C:/Users/Administrator/Desktop/R Projects/UCI HAR Dataset/features.txt")
 
 # Grab the variable indices containing mean() and std() in the name.
-# This also grabbed the meanfreq() variables so I separated them out from the mean() variables.  
+# This also grabbed the meanfreq() and angle() variables so I separated them out from the mean() variables.  
 mean_variables <- grep("[Mm]ean()", features[,2])
 meanfreq_variables <- grep("[Mm]eanFreq()", features[,2])
+angle_variables <- grep("angle", features[,2])
 mean_variables <- setdiff(mean_variables, meanfreq_variables)
+mean_variables <- setdiff(mean_variables, angle_variables)
 std_variables <- grep("[Ss]td()", features[,2])
 
 # Get all our wanted variable indices by appending the mean() and std() variable indices together. 
